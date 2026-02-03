@@ -1,3 +1,4 @@
+@startuml
 title FitLife Context Diagram
 
 top to bottom direction
@@ -15,3 +16,4 @@ Rel(user, FitLifeSystem, "Uses the system")
 Rel(admin,FitLifeSystem,"Manages the system")
 Rel(FitLifeSystem,api,"Fetches fitness data")
 Rel(FitLifeSystem,bank,"Processes payments")
+@enduml
