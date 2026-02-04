@@ -60,9 +60,7 @@
 
 ### 5. Визуализация контекста системы — диаграмма С4
 
-```markdown
 [Контекстная диаграмма AS-IS](https://github.com/viceversag/Yandex-Architecture/blob/warmhouse/diagrams/context/Warmhouse_context.puml)
-```
 
 # Задание 2. Проектирование микросервисной архитектуры
 
