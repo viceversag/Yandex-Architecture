@@ -7,14 +7,15 @@ top to bottom direction
 
 Person(user, "User", "Пользователь, который использует систему для установки и проверки температуры")
 Person(admin, "Administrator", "Администратор, управляющий системой")
-Person(serviceman, "Service man", "Специалист, устанавливающий и обслуживающий датчики")
+Person(serviceman, "Service man", "Специалист, устанавливающий и регистрирующий датчики")
 System(WarmhouseSystem, "Warmhouse System", "Система управления удаленными датчиками температуры")
 
 System_Ext(sensor, "Умный датчик", "Датчики температуры, которыми управляет система")
+'System_Ext(bank, "Bank System", "External bank for processing payments")
 
 Rel(user, WarmhouseSystem, "Использует систему")
 Rel(admin,WarmhouseSystem,"Управляет системой")
-Rel(serviceman, WarmhouseSystem,"Обслуживает датчики")
+Rel(serviceman, WarmhouseSystem,"Регистрирует датчики")
 Rel(sensor, WarmhouseSystem,"Передает показания")
-Rel(WarmhouseSystem, sensor, "Регистрирует датчик")
+Rel(WarmhouseSystem, sensor, "Привязывает датчик в помещении")
 @enduml
