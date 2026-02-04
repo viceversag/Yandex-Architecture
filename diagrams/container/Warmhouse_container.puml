@@ -1,0 +1,42 @@
+@startuml
+title Warmhouse Container Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user, "Пользователь", "Пользователь использует систему для регистрации датчиков самостоятельно, разрешения технических проблем и просмотра данных")
+Person(admin, "Администратор", "Администратор управляет системой")
+Person(serviceman, "Поддержка", "Специалист регистрирует и решает технические проблемы пользователей")
+System(WarmhouseSystem, "Warmhouse System", "Система удаленного управления датчиками и пользователями, визуализации показаний")
+
+Container_Boundary(WarmhouseSystem, "Warmhouse System") {
+  Container(WebApp, "Приложение Web", "React", "Взаимодействие с пользователями во всем спектре услуг")
+  Container(MobileApp, "Мобильное приложение", "Kotlin, Swift", "Взаимодействие с пользователями: просмотр показаний")
+  Container(UserService, "Сервис пользователей", "Node.js, Fast API", "Обработка информации о пользователях и их жилье")
+  Container(SensorService, "Сервис датчиков", "Node.js, Fast API", "Обработка информации о датчиках")
+  Container(SupplierService, "Сервис поставщиков", "Node.js, Fast API", "Обработка информации о поставщиках")
+  Container(UserDatabase, "User Database", "PostgreSQL", "Хранение информации о пользователях")
+  Container(SensorDatabase, "Sensor Database", "PostgreSQL", "Хранение информации о датчиках")
+  Container(SupplierDatabase, "Supplier Database", "PostgreSQL", "Хранение информации о поставщиках")
+}
+
+System_Ext(sensor, "Умный датчик", "Датчики температуры, которыми управляет система")
+System_Ext(supplier, "Поставщик датчиков", "Внешний API: список датчиков и цены")
+
+Rel(user, WebApp, "Использует систему")
+Rel(user, MobileApp, "Использует систему")
+Rel(admin, WebApp,"Управляет системой")
+Rel(serviceman, WebApp,"Управляет обращениями пользователей")
+Rel(WebApp,UserService,"Информация о пользователях и их жилье")
+Rel(UserService,UserDatabase,"Читает / записывает данные пользователей")
+Rel(WebApp,SensorService,"Информация о сенсорах, месте установки и текущих показаниях")
+Rel(SensorService,SensorDatabase,"Читает / записывает данные датчиков")
+Rel(sensor,SensorService,"Передача данных от датчиков")
+Rel(WebApp,SupplierService,"Информация о поставщиках и их продукции")
+Rel(SupplierService,SupplierDatabase,"Читает / записывает данные поставщиков")
+Rel(supplier,SupplierService,"Передача актуальных спецификаций и цен")
+Rel(SupplierService, supplier,"Запрос на обновление информации")
+Rel(MobileApp, UserService,"Получение собственной регистрационной информации")
+Rel(MobileApp, SensorService,"Получение текущих данных от датчиков")
+@enduml
