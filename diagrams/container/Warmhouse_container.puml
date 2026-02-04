@@ -19,6 +19,7 @@ Container_Boundary(WarmhouseSystem, "Warmhouse System") {
   Container(UserDatabase, "User Database", "PostgreSQL", "Хранение информации о пользователях")
   Container(SensorDatabase, "Sensor Database", "PostgreSQL", "Хранение информации о датчиках")
   Container(SupplierDatabase, "Supplier Database", "PostgreSQL", "Хранение информации о поставщиках")
+  Container(ProblemsDatabase, "Problems Database", "PostgreSQL", "Хранение информации об обращениях пользователей")
 }
 
 System_Ext(sensor, "Умный датчик", "Датчики температуры, которыми управляет система")
@@ -29,6 +30,7 @@ Rel(user, MobileApp, "Использует систему")
 Rel(admin, WebApp,"Управляет системой")
 Rel(serviceman, WebApp,"Управляет обращениями пользователей")
 Rel(WebApp,UserService,"Информация о пользователях и их жилье")
+Rel(WebApp,ProblemsDatabase,"Информация об обращениях пользователей")
 Rel(UserService,UserDatabase,"Читает / записывает данные пользователей")
 Rel(WebApp,SensorService,"Информация о сенсорах, месте установки и текущих показаниях")
 Rel(SensorService,SensorDatabase,"Читает / записывает данные датчиков")
