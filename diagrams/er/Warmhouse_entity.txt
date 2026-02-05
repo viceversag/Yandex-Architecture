@@ -1,0 +1,37 @@
+Table User {
+  user_id uuid [primary key]
+  user_type enum
+  name varchar(50)
+  email varchar(50)
+}
+
+Table Location {
+  location_id uuid [primary key]
+  user_id int
+  type enum
+}
+
+Table Sensor {
+  sensor_id uuid [primary key]
+  location_id uuid
+  manufacturer_id uuid
+  type enum
+  maintenance bool
+}
+
+Table Manufacturer {
+  manufacturer_id uuid [primary key]
+  name varchar(50)
+  email varchar(50)
+}
+
+Table Problem {
+  problem_id uuid [primary key]
+  initiator_id uuid
+  description text
+}
+
+Ref: User.user_id < Location.user_id
+Ref: Location.location_id < Sensor.sensor_id
+Ref: Manufacturer.manufacturer_id < Sensor.manufacturer_id
+Ref: Problem.initiator_id > User.user_id
