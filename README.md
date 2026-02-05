@@ -93,6 +93,7 @@
 **Диаграмма компонентов (Components)**
 
 Микросервисов много. Диаграмму компонентов сделал только одного. Остальные будут похожи. Иначе диаграмма становиться нечитаемой
+
 [Диаграмма компонентов](https://github.com/viceversag/Yandex-Architecture/blob/warmhouse/diagrams/component/Warmhouse_component.puml)
 
 **Диаграмма кода (Code)**
@@ -101,7 +102,7 @@
 
 # Задание 3. Разработка ER-диаграммы
 
-Добавьте сюда ER-диаграмму. Она должна отражать ключевые сущности системы, их атрибуты и тип связей между ними.
+[ER диаграмма](https://github.com/viceversag/Yandex-Architecture/blob/warmhouse/diagrams/er/Warmhouse_entity.txt)
 
 # Задание 4. Создание и документирование API
 
