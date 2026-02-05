@@ -97,7 +97,7 @@
 
 **Диаграмма кода (Code)**
 
-Добавьте одну диаграмму или несколько.
+[Диаграмма кода](https://github.com/viceversag/Yandex-Architecture/blob/warmhouse/diagrams/code/Warmhouse_code.puml)
 
 # Задание 3. Разработка ER-диаграммы
 
