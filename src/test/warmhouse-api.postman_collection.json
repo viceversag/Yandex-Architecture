@@ -1,0 +1,52 @@
+{
+    "info": {
+        "_postman_id": "f8e3a123-4567-89ab-cdef-0123456789ab",
+        "name": "Smart Home Sensor API",
+        "description": "A collection for testing the Smart Home Sensor Management API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "health"
+                    ]
+                },
+                "description": "Check if the API is running"
+            },
+            "response": []
+        },
+        {
+            "name": "Get random data from any location",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/temperature?location=1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "v1",
+                        "sensors"
+                    ]
+                },
+                "description": "Random data"
+            },
+            "response": []
+        }
+    ]
+}
