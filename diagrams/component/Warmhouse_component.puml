@@ -1,0 +1,41 @@
+@startuml
+title Warmhouse Web Application Component Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(FitLifeSystem, "FitLife System") {
+  Container(WebApp, "Приложение Web", "React", "Взаимодействие с пользователями во всем спектре услуг")
+  Container(UserService, "Сервис пользователей", "Node.js, Fast API", "Обработка информации о пользователях и их жилье")
+  Container(SensorService, "Сервис датчиков", "Node.js, Fast API", "Обработка информации о датчиках")
+  Container(SupplierService, "Сервис поставщиков", "Node.js, Fast API", "Обработка информации о поставщиках")
+  Container(UserDatabase, "User Database", "PostgreSQL", "Хранение информации о пользователях")
+  Container(SensorDatabase, "Sensor Database", "PostgreSQL", "Хранение информации о датчиках")
+  Container(SupplierDatabase, "Supplier Database", "PostgreSQL", "Хранение информации о поставщиках")
+  Container(ProblemDatabase, "Problem Database", "PostgreSQL", "Хранение информации о запросах пользователей")
+}
+
+Container(WebApp, "Приложение Web", "React") {
+  Component(AuthController, "AuthController", "Аутентификация и авторизация")
+  Component(UserController, "ProfileController", "Управление профилями пользователей")
+  Component(SensorController, "SensorController", "Управление датчиками")
+  Component(SupplierController, "SupplierController", "Управление постащиками")
+  Component(ServiceLayer, "Service Layer", "Бизнес логика")
+  Component(RepositoryLayer, "Repository Layer", "Компонент доступа к данным")
+}
+
+Rel(AuthController,ServiceLayer,"Обращение к логике")
+Rel(ServiceLayer,UserService,"Обращение к логике")
+Rel(UserController,ServiceLayer,"Обращение к логике")
+Rel(ServiceLayer,UserService,"Обращение к логике")
+Rel(SensorController,ServiceLayer,"Обращение к логике")
+Rel(ServiceLayer,SensorService,"Обращение к логике")
+Rel(SupplierController,ServiceLayer,"Обращение к логике")
+Rel(ServiceLayer,SupplierService,"Обращение к логике")
+Rel(ServiceLayer, RepositoryLayer,"Логика сохранения данных")
+Rel(RepositoryLayer,ProblemDatabase,"Читает / пишет данные об обращениях пользователей")
+Rel(UserService,UserDatabase,"Читает / пишет данные о пользователей")
+Rel(SensorService,SensorDatabase,"Читает / пишет данные о датчиках")
+Rel(SupplierService,SupplierDatabase,"Читает / пишет данные о датчиках")
+@enduml
