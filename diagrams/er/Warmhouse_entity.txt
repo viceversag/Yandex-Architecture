@@ -7,7 +7,7 @@ Table User {
 
 Table Location {
   location_id uuid [primary key]
-  user_id int
+  user_id uuid
   type enum
 }
 
@@ -25,13 +25,19 @@ Table Manufacturer {
   email varchar(50)
 }
 
-Table Problem {
-  problem_id uuid [primary key]
-  initiator_id uuid
+Table Issue {
+  issue_id uuid [primary key]
   description text
+}
+
+Table User_Issue {
+  user_issue_id uuid [primary key]
+  user_id uuid
+  issue_id uuid
 }
 
 Ref: User.user_id < Location.user_id
 Ref: Location.location_id < Sensor.sensor_id
 Ref: Manufacturer.manufacturer_id < Sensor.manufacturer_id
-Ref: Problem.initiator_id > User.user_id
+Ref: User_Issue.user_id > User.user_id
+Ref: User_Issue.issue_id > Issue.issue_id
