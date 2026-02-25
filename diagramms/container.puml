@@ -1,0 +1,41 @@
+@startuml
+title VoidCinema Container Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user_note, "Пользователь с ноутом", "Пользователь с ноутбуком. Все по взрослому")
+Person(user_mob, "Пользователь с мобильным приложением", "Пользователь с мобильным приложением")
+Person(user_tv, "Пользователь со Smart TV", "Тут мы всего лишь смотрим телевизор")
+System(VoidCinema, "Кинобездна", "Онлайн кинотеатр")
+
+Container_Boundary(VoidCinema, "Кинобездна") {
+  Container(Gateway, "Gateway / Proxy", "Kong / Nginx / HAProxy", "Тут мы централизованно управляемся с запросами пользователей")
+  Container(AuthService, "Авторизация / Аутентификация", "KeyCloak", "Тут мы узнаем про пользователей самое важное")
+  Container(MetaData, "Метаданные наших фильмов", "FastAPI", "Тут мы храним основную информацию о наших фильмах")
+  Container(Content, "Сервис самих фильмов", "FastAPI", "Тут у нас самое интересное")
+  Container(S3, "Хранилище фильмов", "MiniIO", "Тут мы храним лицензионные копии")
+  Container(UserDataBase, "Храним все о наших пользователях", "PostgreSQL", "Похоже все понятно...")
+  Container(OrderService, "Заказы и платежи", "Go", "Собираем все хотелки пользователей")
+}
+
+System_Ext(payment, "Внешняя система платежей", "Берем деньги за работу")
+System_Ext(recommendations, "Внешняя система рекомендаций", "Отсюда летят советы как нам жить")
+System_Ext(onlinecinema, "Стронние онлайн кинотеатры", "Сюда мы поставляем наш контент")
+
+Rel(user_note, Gateway, "Пытаемся зайти с ноутбука")
+Rel(user_mob, Gateway, "Смотрим на ходу")
+Rel(user_tv, Gateway, "Семья купила попкорн")
+Rel(Gateway, AuthService, "Расскажи мне все тайны")
+Rel(Gateway, MetaData, "Собираем основные сведения о наших фильмах")
+Rel(Gateway, Content, "А дай ка мне как можно больше фильмов")
+Rel(Gateway, OrderService, "Хочу новый сервис / подписку")
+Rel(Content, recommendations, "Что мы посмотрели")
+Rel(recommendations, MetaData, "Что бы вам порекомендовать")
+Rel(Content, S3, "А где у нас собственно фильмы")
+Rel(AuthService, UserDataBase, "Безопасно получаем личную информацию пользователей")
+Rel(OrderService, payment, "Процессим все платежи пользователей")
+Rel(MetaData, onlinecinema, "Отдаем фильмы в прокат")
+Rel(Content, onlinecinema, "Отдаем фильмы в прокат")
+@enduml
