@@ -1,5 +1,3 @@
-## Изучите [README.md](.\README.md) файл и структуру проекта.
-
 # Задание 1
 
 [Диаграмма контейнеров нашего кинотеатра](https://github.com/viceversag/Yandex-Architecture/blob/cinema/diagramms/container.puml)

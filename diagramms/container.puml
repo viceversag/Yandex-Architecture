@@ -1,5 +1,5 @@
 @startuml
-title VoidCinema Container Diagram
+title CinemaAbyss Container Diagram
 
 top to bottom direction
 
@@ -8,9 +8,9 @@ top to bottom direction
 Person(user_note, "Пользователь с ноутом", "Пользователь с ноутбуком. Все по взрослому")
 Person(user_mob, "Пользователь с мобильным приложением", "Пользователь с мобильным приложением")
 Person(user_tv, "Пользователь со Smart TV", "Тут мы всего лишь смотрим телевизор")
-System(VoidCinema, "Кинобездна", "Онлайн кинотеатр")
+System(CinemaAbyss, "Кинобездна", "Онлайн кинотеатр")
 
-Container_Boundary(VoidCinema, "Кинобездна") {
+Container_Boundary(CinemaAbyss, "Кинобездна") {
   Container(Gateway, "Gateway / Proxy", "Kong / Nginx / HAProxy", "Тут мы централизованно управляемся с запросами пользователей")
   Container(AuthService, "Авторизация / Аутентификация", "KeyCloak", "Тут мы узнаем про пользователей самое важное")
   Container(MetaData, "Метаданные наших фильмов", "FastAPI", "Тут мы храним основную информацию о наших фильмах")
