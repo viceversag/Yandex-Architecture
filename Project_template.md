@@ -5,7 +5,8 @@
 # Задание 2
 
 Сервисы Proxy и Events созданы. Все тесты в скринах в папке print_screens. Все сообщения в топиках Kafka также в виде скринов в тйо же папке. Запуск тестов черех npm не удался: появились ошибки, которые я не заню как исправить. Но все тесты через postman и новые сообщения в kafka в виде сркинов есть.
-[Ссылка на папку со скринами] (https://github.com/viceversag/Yandex-Architecture/tree/cinema/print_screens)
+
+[Ссылка на папку со скринами](https://github.com/viceversag/Yandex-Architecture/tree/cinema/print_screens)
 
 # Задание 3
 
