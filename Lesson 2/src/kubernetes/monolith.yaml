@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monolith
-  namespace: cinemaabyss
+  namespace: yandex-arch
   labels:
     app: monolith
 spec:
@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: monolith
-        image:  ghcr.io/db-exp/cinemaabysstest/monolith:latest
+        image:  ghcr.io/viceversag/yandex-arch/monolith:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -33,9 +33,9 @@ spec:
           value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_NAME)?sslmode=disable"
         envFrom:
         - configMapRef:
-            name: cinemaabyss-config
+            name: yandex-arch-config
         - secretRef:
-            name: cinemaabyss-secrets
+            name: yandex-arch-secrets
         resources:
           limits:
             cpu: "500m"
@@ -63,7 +63,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: monolith
-  namespace: cinemaabyss
+  namespace: yandex-arch
 spec:
   selector:
     app: monolith
