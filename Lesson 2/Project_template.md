@@ -1,12 +1,12 @@
 # Задание 1
 
-[Диаграмма контейнеров нашего кинотеатра](https://github.com/viceversag/Yandex-Architecture/blob/cinema/diagramms/container.puml)
+[Диаграмма контейнеров нашего кинотеатра](https://github.com/viceversag/Yandex-Architecture/blob/cinema/Lesson%202/diagramms/container.puml)
 
 # Задание 2
 
 Сервисы Proxy и Events созданы. Все тесты в скринах в папке print_screens. Все сообщения в топиках Kafka также в виде скринов в той же папке. Запуск тестов черех npm не удался: появились ошибки, которые я не заню как исправить. Но все тесты через postman и новые сообщения в kafka в виде сркинов есть.
 
-[Ссылка на папку со скринами](https://github.com/viceversag/Yandex-Architecture/tree/cinema/print_screens)
+[Ссылка на папку со скринами](https://github.com/viceversag/Yandex-Architecture/tree/cinema/Lesson%202/print_screens)
 
 # Задание 3
 
