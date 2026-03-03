@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Warmhouse 
+  version: 1.0.0
+  description: Краткое описание минимальной спецификации API
+servers:
+  - url: https://api.warmhouse.group/v1
+  
+components:  
+  schemas:
+    sensor:
+      type: object
+      required: [id, type, location]
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: eda5cbc1-a615-4da5-ae73-4a33a9acfb6a
+        stype:
+          type: string
+          example: Temperature
+        location:
+          type: string
+          example: 123 Elm Street
+
+paths:
+  /sensor/{sensor_id}:
+    get:
+      summary: Информация о конкретном датчике
+      parameters:
+        - name: sensor_id
+          in : path
+          required: true
+          schema:
+            type: integer
+        - name: stype
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Возвращается вся техническая, географическая информация о датчике
+      responses:
+        '200':
+          description: Один датчик
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sensor'
+        '400':
+          description: Датчик не найден
+        '500':
+          description: Внутренняя ошибка сервера
+          
+    post:
+      summary: Добавление нового датчика
+      parameters:
+        - name: sensor_id
+          in : path
+          required: true
+          schema:
+            type: integer
+        - name: stype
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Добавляем новый датчик
+      responses:
+          '201':
+            description: Датчик успешно добавлен
+          '400':
+            description: Датчик не найден
+          '500':
+            description: Внутренняя ошибка сервера
+    put:
+      summary: Обновление информации о датчике
+      parameters:
+        - name: sensor_id
+          in : path
+          required: true
+          schema:
+            type: integer
+        - name: stype
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Обновление информации о датчике
+      responses:
+          '200':
+            description: Датчик успешно обновлен
+          '400':
+            description: Датчик не найден
+          '500':
+            description: Внутренняя ошибка сервера
+    delete:
+      summary: Удаление датчика
+      parameters:
+        - name: sensor_id
+          in : path
+          required: true
+          schema:
+            type: integer
+        - name: stype
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Удаление датчика
+      responses:
+          '200':
+            description: Датчик успешно удален
+          '400':
+            description: Датчик не найден
+          '500':
+            description: Внутренняя ошибка сервера
+            
