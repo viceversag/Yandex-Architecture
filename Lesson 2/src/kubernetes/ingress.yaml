@@ -1,18 +1,31 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cinemaabyss-ingress
-  namespace: cinemaabyss
+  name: yandex-arch-ingress
+  namespace: yandex-arch
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-    - host: cinemaabyss.example.com
+    - host: yandex-arch.example.com
       http:
         paths:
           #дополните конфигурацию для /
-          ...
+          - path: /api/movies
+            pathType: Prefix
+            backend:
+              service:
+                name: movies-service
+                port:
+                  number: 8081
+          - path: /api/proxy
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 8000
           - path: /api/events
             pathType: Prefix
             backend:
